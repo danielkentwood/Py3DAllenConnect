@@ -49,8 +49,8 @@ def vis3D_glassBrain(brain_array,pad,ds_factor):
     mesh.scale(ds_factor,ds_factor,ds_factor)
     mesh.rotate(-90, 1, 0, 0)
     view.addItem(mesh)
-    view.setCameraPosition(distance=200, elevation=20, azimuth=90)
-    view.setWindowTitle('Consciousness is an illusion')
+    view.setCameraPosition(distance=1000, elevation=20, azimuth=90)
+    view.setWindowTitle('Consciousness is a grand illusion')
     view.show()
 
     return view
@@ -80,7 +80,7 @@ def vis3D_projections(view,inj_array,ds_factor=1):
     vi.scale(ds_factor,ds_factor,ds_factor)
     vi.setGLOptions('additive')
     vi.rotate(-90, 1, 0, 0)
-    view.setCameraPosition(distance=200, elevation=20, azimuth=90)
+    view.setCameraPosition(distance=1000, elevation=20, azimuth=90)
     view.addItem(vi)
     
     return view
@@ -101,28 +101,28 @@ def vis3D_structureMask(view,mask,maskCol,ds_factor):
     meshMask.scale(ds_factor,ds_factor,ds_factor)
     meshMask.rotate(-90, 1, 0, 0)
     view.addItem(meshMask)
-    view.setCameraPosition(distance=200, elevation=20, azimuth=90)
+    view.setCameraPosition(distance=1000, elevation=20, azimuth=90)
     view.show()
 
     return view
 
 
-def vis3D_getPath( target_voxel, experiment_id ) :
-    url = "http://api.brain-map.org/api/v2/data/query.json?criteria=service::mouse_connectivity_target_spatial"
-    url = url + "[seed_point$eq%s]" % ','.join([str(s) for s in target_voxel])
-    url = url + "[section_data_set$eq%d]" % experiment_id
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
-    data = [s['coord'] for s in data['msg'][0]['path']]
-    return data
+# def vis3D_getPath( target_voxel, experiment_id ) :
+#     url = "http://api.brain-map.org/api/v2/data/query.json?criteria=service::mouse_connectivity_target_spatial"
+#     url = url + "[seed_point$eq%s]" % ','.join([str(s) for s in target_voxel])
+#     url = url + "[section_data_set$eq%d]" % experiment_id
+#     response = urllib.urlopen(url)
+#     data = json.loads(response.read())
+#     data = [s['coord'] for s in data['msg'][0]['path']]
+#     return data
 
-def vis3D_showPaths(view,paths,pathCols,ds_factor):
-    pts = paths[::ds_factor]
-    plt = pgl.GLLinePlotItem(pos=pts, color=pg.glColor([255,0,0,255]), width=2, antialias=True)
-    view.addItem(plt)
-    view.show()
+# def vis3D_showPaths(view,paths,pathCols,ds_factor):
+#     pts = paths[::ds_factor]
+#     plt = pgl.GLLinePlotItem(pos=pts, color=pg.glColor([255,0,0,255]), width=2, antialias=True)
+#     view.addItem(plt)
+#     view.show()
 
-    return view
+#     return view
 
 
 
