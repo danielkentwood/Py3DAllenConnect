@@ -1,4 +1,9 @@
-def get_connectivity(source_abb,targ_abb,ontology,mcc):
+import pandas as pd
+import numpy as np
+import matplotlib as plt
+
+
+def get_connectivity(source_abb, targ_abb, ontology, mcc):
     '''
     Maps the connectivity between two structures of interest.
     Inputs:
@@ -78,15 +83,15 @@ def plot_max_voxels(X, ontology, mcc, mask_abbr=None, close_buffer=50):
     template, template_info = mcc.get_template_volume()
 
     mX_a1 = X.max(axis=1)
-    mXx_a1 = np.unravel_index(mX_a1.argmax(),mX_a1.shape);
+    mXx_a1 = np.unravel_index(mX_a1.argmax(),mX_a1.shape)
     mX_a1[mX_a1==0]=np.nan
 
     mX_a2 = X.max(axis=0)
-    mXx_a2 = np.unravel_index(mX_a2.argmax(),mX_a2.shape);
+    mXx_a2 = np.unravel_index(mX_a2.argmax(),mX_a2.shape)
     mX_a2[mX_a2==0]=np.nan
 
     mX_a3 = X.max(axis=2)
-    mXx_a3 = np.unravel_index(mX_a3.argmax(),mX_a3.shape);
+    mXx_a3 = np.unravel_index(mX_a3.argmax(),mX_a3.shape)
     mX_a3[mX_a3==0]=np.nan
 
     # plotting

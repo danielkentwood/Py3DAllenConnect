@@ -7,16 +7,16 @@ import pyqtgraph as pg
 import pyqtgraph.opengl as pgl
 pg.mkQApp()
 
-def vis3D(brain_array,inj_array,pad = 30,ds_factor=6):
+def vis3D(brain_array, inj_array, pad = 30, ds_factor=6):
     
     # set up time variables
     now = time.time()
     now_start = now
     
-    view = vis3D_glassBrain(brain_array,pad,ds_factor)
+    view = glass_brain(brain_array,pad,ds_factor)
     print "build brain isosurface %0.2f" % (time.time() - now); now = time.time() 
     
-    view = vis3D_projections(view,inj_array,ds_factor)
+    view = projections(view,inj_array,ds_factor)
     print "build injection volume %0.2f" % (time.time() - now); now = time.time() 
     
     view.show()
@@ -28,7 +28,7 @@ def vis3D(brain_array,inj_array,pad = 30,ds_factor=6):
 
 
 
-def vis3D_glassBrain(brain_array,pad,ds_factor):
+def glass_brain(brain_array, pad, ds_factor):
     
     # initialize the window
     view = pgl.GLViewWidget()   
@@ -56,7 +56,7 @@ def vis3D_glassBrain(brain_array,pad,ds_factor):
     return view
 
 
-def vis3D_projections(view,inj_array,ds_factor=1):
+def projections(view, inj_array, ds_factor=1):
     ds_factor=1 # disabled ds_factor because it isn't implemented
     # render the injection(s) as a volume
     # inj_array should be a list of tuples, with the first element in the tuple
@@ -87,7 +87,7 @@ def vis3D_projections(view,inj_array,ds_factor=1):
 
 
 
-def vis3D_structureMask(view,mask,maskCol,ds_factor):
+def structure_mask(view, mask, maskCol, ds_factor):
 
     # downsample the brain image using the ds_factor
     img = mask[::ds_factor,::ds_factor,::ds_factor]
@@ -107,27 +107,21 @@ def vis3D_structureMask(view,mask,maskCol,ds_factor):
     return view
 
 
-# def vis3D_getPath( target_voxel, experiment_id ) :
-#     url = "http://api.brain-map.org/api/v2/data/query.json?criteria=service::mouse_connectivity_target_spatial"
-#     url = url + "[seed_point$eq%s]" % ','.join([str(s) for s in target_voxel])
-#     url = url + "[section_data_set$eq%d]" % experiment_id
-#     response = urllib.urlopen(url)
-#     data = json.loads(response.read())
-#     data = [s['coord'] for s in data['msg'][0]['path']]
-#     return data
+def get_path(target_voxel, experiment_id) :
+    url = "http://api.brain-map.org/api/v2/data/query.json?criteria=service::mouse_connectivity_target_spatial"
+    url = url + "[seed_point$eq%s]" % ','.join([str(s) for s in target_voxel])
+    url = url + "[section_data_set$eq%d]" % experiment_id
+    response = urllib.urlopen(url)
+    data = json.loads(response.read())
+    data = [s['coord'] for s in data['msg'][0]['path']]
+    return data
 
-# def vis3D_showPaths(view,paths,pathCols,ds_factor):
-#     pts = paths[::ds_factor]
-#     plt = pgl.GLLinePlotItem(pos=pts, color=pg.glColor([255,0,0,255]), width=2, antialias=True)
-#     view.addItem(plt)
-#     view.show()
+def show_paths(view,paths,pathCols,ds_factor):
+    pts = paths[::ds_factor]
+    plt = pgl.GLLinePlotItem(pos=pts, color=pg.glColor([255,0,0,255]), width=2, antialias=True)
+    plt.translate(-528./2,-320./2,-456./2) # currently hard-coded. Need to find a cheap way to pass this info
+    plt.rotate(-90, 1, 0, 0)
+    view.addItem(plt)
+    view.show()
 
-#     return view
-
-
-
-
-
-
-
-
+    return view
