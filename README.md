@@ -41,17 +41,19 @@ The `structure_mask()` method renders glass volumes of neuroanatomical structure
 
 These two methods make it easier for the user to query for connectivity pathways inferred from projection tracing experiments, and then visualize those projections within the glass brain. Check out the video below, which shows a projection from visual cortex (pink) to superior colliculus (green).
 
-<video width="450" controls>
+<!--<video width="450" controls>
   <source src="./assets/vid1.mp4" type="video/mp4">
-</video>
+</video>-->
+<img src="./assets/vid1.gif" alt="structure_mask" width="450"/>
 
 ### * projections()
 
 The `projections()` method renders volumes of the raw tracing experiment results. You can render an arbitrary number of experiments simultaneously. For example, in the video below there are two experiments. The blue represents all of the cells that expressed the tracing indicator after it was injected into superior colliculus. The red represents the cells that expressed the indicator after an injection into pontine reticular formation. The purple is the overlap between the two.
  
-<video width="450" controls>
+<!--<video width="450" controls>
   <source src="./assets/vid2.mp4" type="video/mp4">
-</video>
+</video>-->
+<img src="./assets/vid2.gif" alt="structure_mask" width="450"/>
 
 ## NOTES
 
