@@ -1,7 +1,7 @@
 # vis3DConnect
 ### A Python toolset for 3D visualization of brain connectivity data.
 
-This was a project I completed during the 2016 Summer Workshop on the Dynamic Brain with the Allen Institute. 
+This was a project I completed during the [2016 Summer Workshop on the Dynamic Brain with the Allen Institute](https://www.youtube.com/watch?v=OmYkj1FImpI&ab_channel=AllenInstitute). 
 
 **Vis3DConnect** is an extension to the [Allen Institute python SDK](https://allensdk.readthedocs.io/en/latest/). It allows the user to select neural tracing experiments from the [Mouse Brain Connectivity Atlas] (http://connectivity.brain-map.org/) 
 and visualize them in a 3D glass brain with an interface that allows rotation, zooming, etc. I won the prize for "Best Visualization."  
